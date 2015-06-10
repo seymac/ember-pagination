@@ -26,6 +26,13 @@ export default Ember.Component.extend({
   				page.set('isCurrentPage', page.get('number') == pageNumber);
   			});
   			this.set('currentPage', pageNumber);
+  		},
+
+  		nextPage: function(){
+  			var currentPage = this.get('currentPage');
+  			var totalPageNumber = this.get('totalPageNumber');
+  			if(currentPage < totalPageNumber)
+  				this.set('currentPage', currentPage + 1);
   		}
   	}
 
