@@ -12,17 +12,16 @@
 
 
 <ul class="pagination">
-  <li class="arrow unavailable"><a {{action 'previousPage'}}>&laquo;</a></li>
+  <li class="arrow unavailable"><a {{action 'previousPage'}} {{bind-attr disabled=canStepBackward}} >&laquo;</a></li>
 
 	{{#each page in pages}}
     {{#if page.isCurrentPage}}
-    <li class="current"><a {{action 'goToPage' page.number}} >{{page.number}}</a></li>
+      <li class="current"><a {{action 'goToPage' page.number}} >{{page.number}}</a></li>
     {{else}}
       <li><a {{action 'goToPage' page.number}}>{{page.number}}</a></li>
     {{/if}}
-    
   {{/each}}
 
-  <li class="arrow"><a {{action 'nextPage'}}>&raquo;</a></li>
+  <li class="arrow"><a {{action 'nextPage'}} {{bind-attr disabled=canStepForward}}>&raquo;</a></li>
 
 </ul>
