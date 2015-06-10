@@ -15,7 +15,12 @@
   <li class="arrow unavailable"><a href="">&laquo;</a></li>
 
 	{{#each page in pages}}
-    <li><a href="">{{page}}</a></li>
+    {{#if page.isCurrentPage}}
+    <li class="current"><a {{action 'goToPage' page.number}} >{{page.number}}</a></li>
+    {{else}}
+      <li><a {{action 'goToPage' page.number}}>{{page.number}}</a></li>
+    {{/if}}
+    
   {{/each}}
 
   <li class="arrow"><a href="">&raquo;</a></li>
