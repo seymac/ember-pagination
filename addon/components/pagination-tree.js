@@ -33,6 +33,13 @@ export default Ember.Component.extend({
   			var totalPageNumber = this.get('totalPageNumber');
   			if(currentPage < totalPageNumber)
   				this.set('currentPage', currentPage + 1);
+  		},
+
+  		previousPage: function(){
+  			var currentPage = this.get('currentPage');
+  			if( currentPage > 1){
+  				this.set('currentPage', currentPage -1);
+  			} 
   		}
   	}
 
