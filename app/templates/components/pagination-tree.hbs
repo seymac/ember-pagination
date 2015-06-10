@@ -9,3 +9,15 @@
   <li><a href="">13</a></li>
   <li class="arrow"><a href="">&raquo;</a></li>
 </ul>
+
+
+<ul class="pagination">
+  <li class="arrow unavailable"><a href="">&laquo;</a></li>
+
+	{{#each page in pages}}
+    <li><a href="">{{page}}</a></li>
+  {{/each}}
+
+  <li class="arrow"><a href="">&raquo;</a></li>
+
+</ul>
