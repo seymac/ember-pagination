@@ -3,8 +3,13 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 	totalPageNumber : 1,
 	currentPage: 1,
-	canStepForward: false,
-	canStepBackward: false,
+	cannotStepForward: true,
+	cannotStepBackward: true,
+
+	didInsertElement: function(){
+		this._super();
+		this.currentPageChanged();
+	},
 
 	pages: Ember.computed( 'totalPageNumber', 'currentPage', function(){
     	var totalPageNumber = this.get('totalPageNumber');
@@ -24,9 +29,8 @@ export default Ember.Component.extend({
     	var totalPageNumber = this.get('totalPageNumber');
   		var currentPage = this.get('currentPage');
 
-  		this.set('canStepForward', currentPage < totalPageNumber);
-  		this.set('canStepBackward', currentPage > 1);
-
+  		this.set('cannotStepForward', currentPage >= totalPageNumber);
+  		this.set('cannotStepBackward', currentPage <= 1);
   	}),
 
   	actions:{

@@ -12,7 +12,17 @@
 
 
 <ul class="pagination">
-  <li class="arrow unavailable"><a {{action 'previousPage'}} {{bind-attr disabled=canStepBackward}} >&laquo;</a></li>
+  {{#if cannotStepBackward}}
+    <li class="arrow unavailable">
+      <button {{action 'previousPage'}} disabled>&laquo;
+      </button>
+    </li>
+  {{else}}
+    <li class="arrow">
+      <button {{action 'previousPage'}}>&laquo;
+      </button>
+    </li>
+  {{/if}}
 
 	{{#each page in pages}}
     {{#if page.isCurrentPage}}
@@ -22,6 +32,16 @@
     {{/if}}
   {{/each}}
 
-  <li class="arrow"><a {{action 'nextPage'}} {{bind-attr disabled=canStepForward}}>&raquo;</a></li>
+  {{#if cannotStepForward}}
+    <li class="arrow unavailable">
+      <button {{action 'nextPage'}} disabled>&raquo;
+      </button>
+    </li>
+  {{else}}
+    <li class="arrow">
+      <button {{action 'nextPage'}}>&raquo;
+      </button>
+    </li>
+  {{/if}}
 
 </ul>
