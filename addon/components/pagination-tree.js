@@ -5,25 +5,71 @@ export default Ember.Component.extend({
 	currentPage: 1,
 	cannotStepForward: true,
 	cannotStepBackward: true,
+  afterCurrentPageNumber : 2,
+  beforeCurrentPageNumber : 2,
 
 	didInsertElement: function(){
 		this._super();
 		this.currentPageChanged();
 	},
 
-	pages: Ember.computed( 'totalPageNumber', 'currentPage', function(){
-    	var totalPageNumber = this.get('totalPageNumber');
-    	var currentPage = this.get('currentPage');
-    	var pages = Ember.A([]);
-    	for(var i=1; i <= totalPageNumber; i++){
-    		var page = Ember.Object.create({
-    			number : i,
-    			isCurrentPage: i === currentPage
-    		});
-    		pages.push(page);
-    	}
-    	return pages;
-  	}),
+  pages: Ember.computed('totalPageNumber', 'currentPage',function(){
+  		var totalPageNumber = this.get('totalPageNumber');
+      var currentPage = this.get('currentPage');
+      var beforeCurrentPageNumber = this.get('beforeCurrentPageNumber');
+      var afterCurrentPageNumber = this.get('afterCurrentPageNumber');
+      
+      var pages= Ember.A([]);
+  		var firstPage = Ember.Object.create({
+  			number: 1,
+  			isCurrentPage: currentPage===1
+  		});
+  		pages.push(firstPage);
+
+      if(currentPage - beforeCurrentPageNumber > 2){
+        var middlePage = Ember.Object.create({
+          number : '...',
+          isCurrentPage : false
+        });
+        pages.push(middlePage);    
+      }
+
+  		for( let i=currentPage - beforeCurrentPageNumber ; i < totalPageNumber && i < currentPage ; i++){
+  			if(i > 1){
+  				var middlePages = Ember.Object.create({
+  					number : i,
+  					isCurrentPage : currentPage === i 
+  				});
+  				pages.push(middlePages);	
+  			}		
+  		}
+
+  		for( let i=currentPage ; i < totalPageNumber && i<= currentPage + afterCurrentPageNumber ; i++){
+        if(i > 1){
+          var middlePages = Ember.Object.create({
+    				number : i,
+    				isCurrentPage : currentPage === i 
+    			});
+    			pages.push(middlePages);
+        }
+  		}
+
+      if( currentPage + afterCurrentPageNumber < totalPageNumber - 1){
+        var middlePage = Ember.Object.create({
+          number : '...',
+          isCurrentPage : false
+        });
+        pages.push(middlePage);  
+      }
+
+  		var lastPage = Ember.Object.create({
+  			number: totalPageNumber,
+  			isCurrentPage: currentPage=== totalPageNumber
+  		});
+  		pages.push(lastPage);
+
+      return pages;
+  }),
 
 	currentPageChanged: Ember.observer('currentPage', 'totalPageNumber', function() {
     	var totalPageNumber = this.get('totalPageNumber');
@@ -31,31 +77,31 @@ export default Ember.Component.extend({
 
   		this.set('cannotStepForward', currentPage >= totalPageNumber);
   		this.set('cannotStepBackward', currentPage <= 1);
-  	}),
+  }),
 
-  	actions:{
-  		goToPage: function(pageNumber){
-  			var pages = this.get('pages');
-  			pages.forEach(function(page){
-  				page.set('isCurrentPage', page.get('number') === pageNumber);
-  			});
-  			this.set('currentPage', pageNumber);
-  		},
+	actions:{
+		goToPage: function(pageNumber){
+			var pages = this.get('pages');
+			pages.forEach(function(page){
+				page.set('isCurrentPage', page.get('number') === pageNumber);
+			});
+			this.set('currentPage', pageNumber);
+		},
 
-  		nextPage: function(){
-  			var currentPage = this.get('currentPage');
-  			var totalPageNumber = this.get('totalPageNumber');
-  			if(currentPage < totalPageNumber){
-  				this.set('currentPage', currentPage + 1);
-  			}
-  		},
+		nextPage: function(){
+			var currentPage = this.get('currentPage');
+			var totalPageNumber = this.get('totalPageNumber');
+			if(currentPage < totalPageNumber){
+				this.set('currentPage', currentPage + 1);
+			}
+		},
 
-  		previousPage: function(){
-  			var currentPage = this.get('currentPage');
-  			if( currentPage > 1){
-  				this.set('currentPage', currentPage -1);
-  			} 
-  		}
-  	}
+		previousPage: function(){
+			var currentPage = this.get('currentPage');
+			if( currentPage > 1){
+				this.set('currentPage', currentPage -1);
+			} 
+		}
+	}
 
 });
