@@ -80,11 +80,13 @@ export default Ember.Component.extend({
   }),
 
 	actions:{
-		goToPage: function(pageNumber){
+		goToPage: function(page){
 			var pages = this.get('pages');
-			pages.forEach(function(page){
-				page.set('isCurrentPage', page.get('number') === pageNumber);
-			});
+      var pageNumber = page.number;
+      if(page.get('number') === '...'){
+        var pageIndex = pages.indexOf(page);
+        pageNumber = Math.round( (pages[pageIndex -1].get('number') + pages[pageIndex + 1].get('number')) / 2 );  
+      }
 			this.set('currentPage', pageNumber);
 		},
 

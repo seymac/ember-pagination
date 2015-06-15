@@ -13,9 +13,9 @@
 
 	{{#each page in pages}}
     {{#if page.isCurrentPage}}
-      <li class="current"><a {{action 'goToPage' page.number}} >{{page.number}}</a></li>
+      <li class="current"><a {{action 'goToPage' page}} >{{page.number}}</a></li>
     {{else}}
-      <li><a {{action 'goToPage' page.number}}>{{page.number}}</a></li>
+      <li><a {{action 'goToPage' page}}>{{page.number}}</a></li>
     {{/if}}
   {{/each}}
 
