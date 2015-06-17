@@ -1,6 +1,6 @@
 {
-  "name": "pagination",
-  "version": "0.0.0",
+  "name": "ember-pagination",
+  "version": "0.0.1",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
@@ -11,11 +11,11 @@
     "build": "ember build",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "git@github.com:seymac/ember-pagination.git",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "seymac",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
@@ -34,7 +34,10 @@
     "ember-try": "0.0.4"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-pagination",
+    "pagination",
+    "foundation-pagination"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.0.0"
