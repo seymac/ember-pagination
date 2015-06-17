@@ -1,5 +1,5 @@
 {
-  "name": "ember-pagination",
+  "name": "ember-pagination-ui",
   "version": "0.0.1",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
@@ -11,7 +11,7 @@
     "build": "ember build",
     "test": "ember try:testall"
   },
-  "repository": "git@github.com:seymac/ember-pagination.git",
+  "repository": "git@github.com:seymac/ember-pagination-ui.git",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -35,7 +35,7 @@
   },
   "keywords": [
     "ember-addon",
-    "ember-pagination",
+    "ember-pagination-ui",
     "pagination",
     "foundation-pagination"
   ],

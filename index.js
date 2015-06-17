@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-pagination',
+  name: 'ember-pagination-ui',
 
   included: function(app) {	
     this._super.included(app);
