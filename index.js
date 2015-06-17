@@ -2,5 +2,12 @@
 'use strict';
 
 module.exports = {
-  name: 'pagination'
+  name: 'ember-pagination',
+
+  included: function(app) {	
+    this._super.included(app);
+
+	app.import(app.bowerDirectory + '/foundation/css/foundation.css');
+	app.import(app.bowerDirectory + '/foundation/js/foundation.js');
+  }
 };

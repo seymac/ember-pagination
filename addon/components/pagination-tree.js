@@ -26,36 +26,39 @@ export default Ember.Component.extend({
   		});
   		pages.push(firstPage);
 
+      var middlePage;
+
       if(currentPage - beforeCurrentPageNumber > 2){
-        var middlePage = Ember.Object.create({
+        middlePage = Ember.Object.create({
           number : '...',
           isCurrentPage : false
         });
         pages.push(middlePage);    
       }
 
-  		for( let i=currentPage - beforeCurrentPageNumber ; i < totalPageNumber && i < currentPage ; i++){
+      var i;
+  		for( i=currentPage - beforeCurrentPageNumber ; i < totalPageNumber && i < currentPage ; i++){
   			if(i > 1){
-  				var middlePages = Ember.Object.create({
+  				middlePage = Ember.Object.create({
   					number : i,
   					isCurrentPage : currentPage === i 
   				});
-  				pages.push(middlePages);	
+  				pages.push(middlePage);	
   			}		
   		}
 
-  		for( let i=currentPage ; i < totalPageNumber && i<= currentPage + afterCurrentPageNumber ; i++){
+  		for( i=currentPage ; i < totalPageNumber && i<= currentPage + afterCurrentPageNumber ; i++){
         if(i > 1){
-          var middlePages = Ember.Object.create({
+          middlePage = Ember.Object.create({
     				number : i,
     				isCurrentPage : currentPage === i 
     			});
-    			pages.push(middlePages);
+    			pages.push(middlePage);
         }
   		}
 
       if( currentPage + afterCurrentPageNumber < totalPageNumber - 1){
-        var middlePage = Ember.Object.create({
+        middlePage = Ember.Object.create({
           number : '...',
           isCurrentPage : false
         });
