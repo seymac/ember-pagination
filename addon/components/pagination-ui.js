@@ -65,11 +65,13 @@ export default Ember.Component.extend({
         pages.push(middlePage);  
       }
 
-  		var lastPage = Ember.Object.create({
-  			number: totalPageNumber,
-  			isCurrentPage: currentPage=== totalPageNumber
-  		});
-  		pages.push(lastPage);
+      if(totalPageNumber > 1){
+    		var lastPage = Ember.Object.create({
+    			number: totalPageNumber,
+    			isCurrentPage: currentPage=== totalPageNumber
+    		});
+        pages.push(lastPage);
+      }
 
       return pages;
   }),
