@@ -1,7 +1,7 @@
 {
   "name": "ember-pagination-ui",
   "version": "0.0.1",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Pagination component for grid or lists prepared with zurb foundation",
   "directories": {
     "doc": "doc",
     "test": "tests"
