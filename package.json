@@ -1,6 +1,6 @@
 {
   "name": "ember-pagination-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Pagination component for grid or lists prepared with zurb foundation",
   "directories": {
     "doc": "doc",
